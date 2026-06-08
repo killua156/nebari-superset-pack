@@ -10,8 +10,8 @@ const config = {
   tagline: 'Deploy Apache Superset on Nebari',
   favicon: 'img/favicon.ico',
 
-  url: 'https://nebari-superset-pack.netlify.app',
-  baseUrl: '/',
+  url: 'https://nebari-dev.github.io',
+  baseUrl: '/nebari-superset-pack/',
 
   organizationName: 'nebari-dev',
   projectName: 'nebari-superset-pack',
