@@ -67,16 +67,8 @@ yarn build
 
 ## Deployment
 
-The site deploys automatically via [Netlify](https://www.netlify.com/) whenever changes land on the `main` branch. Configuration lives in [`netlify.toml`](../netlify.toml) at the repository root:
+The site deploys automatically via GitHub Pages whenever changes land on the `main` branch. The GitHub Actions workflow runs `yarn build` inside `docs/` and publishes the contents of `docs/build/` to the `gh-pages` branch.
 
-| Setting | Value |
-|---------|-------|
-| Base directory | `docs/` |
-| Build command | `yarn run build` |
-| Publish directory | `build/` (resolved to `docs/build/`) |
-| Node version | `20` |
-| Yarn version | `1.22.22` |
+No manual deploy step is required. To trigger a rebuild without a code change, re-run the Pages workflow from the Actions tab.
 
-Pull requests get an automatic Netlify deploy preview, so reviewers can browse the rendered site before merging. No manual deploy step is required; if you need to trigger a rebuild without a code change, do it from the Netlify dashboard.
-
-To point the site at a custom domain, update `url` in [`docusaurus.config.js`](./docusaurus.config.js) and configure the domain in Netlify. The current default, `https://nebari-superset-pack.netlify.app`, matches the Netlify-generated subdomain.
+To point the site at a custom domain, update `url` in [`docusaurus.config.js`](./docusaurus.config.js) and add a `CNAME` file to `docs/static/`. The current default is `https://nebari-dev.github.io/nebari-superset-pack`.
