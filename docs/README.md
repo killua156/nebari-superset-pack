@@ -2,8 +2,6 @@
 
 This directory contains the [Docusaurus 3.5.2](https://docusaurus.io/) site for the Nebari Superset pack.
 
-> **Note:** The site is currently an empty scaffold with a placeholder landing page. Section content will be added in follow-on work.
-
 ## Prerequisites
 
 - Node.js `>= 18` (enforced by the `engines` field in `package.json`).
@@ -44,31 +42,6 @@ yarn run serve
 
 Serves the contents of `docs/build/` locally so you can verify the production output, including search.
 
-## Troubleshooting
-
-### `ValidationError: Invalid options object. Progress Plugin has been initialized using an options object that does not match the API schema`
-
-This is a webpack-version mismatch. Docusaurus 3.5.2 targets webpack 5.94; webpack 5.97+ tightens the `ProgressPlugin` options schema and rejects what Docusaurus passes. `package.json` pins the resolution with:
-
-```json
-"resolutions": {
-  "webpack": "5.94.0"
-}
-```
-
-Yarn applies `resolutions` on install, but if `node_modules` was populated before the field existed (or by a different package manager) the wrong webpack stays cached. Reinstall cleanly:
-
-```bash
-cd docs
-rm -rf node_modules yarn.lock
-yarn install
-yarn build
-```
-
 ## Deployment
 
 The site deploys automatically via GitHub Pages whenever changes land on the `main` branch. The GitHub Actions workflow runs `yarn build` inside `docs/` and publishes the contents of `docs/build/` to the `gh-pages` branch.
-
-No manual deploy step is required. To trigger a rebuild without a code change, re-run the Pages workflow from the Actions tab.
-
-To point the site at a custom domain, update `url` in [`docusaurus.config.js`](./docusaurus.config.js) and add a `CNAME` file to `docs/static/`. The current default is `https://nebari-dev.github.io/nebari-superset-pack`.
